@@ -215,21 +215,21 @@ if geojson_bogota and not df_mapa_filtrado.empty and 'LOCALIDAD' in df_mapa_filt
     # Cambiamos el color dependiendo de la política seleccionada para un toque de diseño
     color_presencia = "#2CA02C" if "Bicicleta" in politica_seleccionada else "#9467BD"
     
-   fig_mapa_poligonos = px.choropleth_map(
-        df_presencia,
-        geojson=geojson_bogota,
-        locations="LOCALIDAD_OFICIAL",
-        featureidkey="properties.LocNombre",
-        color="Presencia",
-        color_discrete_map={"Presencia Activa": color_presencia, "Sin presencia": "#E5ECF6"},
-        map_style="carto-positron",
-        center={"lat": 4.6097, "lon": -74.0817},
-        zoom=9.5,
-        opacity=0.6,
-        height=550,
-        labels={"Presencia": "Estado"},
-        title=f"Localidades con presencia para el ITEM seleccionado ({'PPB' if 'Bicicleta' in politica_seleccionada else 'PPP'})"
-    )
+           fig_mapa_poligonos = px.choropleth_map(
+            df_presencia,
+            geojson=geojson_bogota,
+            locations="LOCALIDAD_OFICIAL",
+            featureidkey="properties.LocNombre",
+            color="Presencia",
+            color_discrete_map={"Presencia Activa": color_presencia, "Sin presencia": "#E5ECF6"},
+            map_style="carto-positron",
+            center={"lat": 4.6097, "lon": -74.0817},
+            zoom=9.5,
+            opacity=0.6,
+            height=550,
+            labels={"Presencia": "Estado"},
+            title=f"Localidades con presencia para el ITEM seleccionado ({'PPB' if 'Bicicleta' in politica_seleccionada else 'PPP'})"
+        )
     
     fig_mapa_poligonos.update_layout(margin={"r":0,"t":40,"l":0,"b":0})
     st.plotly_chart(fig_mapa_poligonos, use_container_width=True)
